@@ -1,0 +1,75 @@
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+   
+}
+
+
+.formLogin{
+    padding: 30px;
+    margin-left: 1000px;
+
+}
+
+.logo{
+   
+    width: 250px;
+}
+
+.cards{
+    display : flex;
+    flex-direction: row;
+    justify-content: center;
+  
+    
+}
+.card{
+    margin-bottom: 50px;
+    align-items: center;
+      width: 30%;
+}
+.card-img-top{
+    width: 30%;
+    padding: 5%;
+    align-items: center;
+}
+.navbar{
+    margin-bottom: 100px;
+ 
+  
+   
+}
+.btncontainer{
+   align-items: center;
+    justify-content: center;
+   
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.carrito{
+    width: 400px;
+}
+
+.margin-bot{
+    margin-bottom: 30px;
+}
+
+.rojo{
+    color: red;
+    font-size: 20px;
+}
+.amarrilo{
+    color: rgb(146, 148, 11);
+    font-size: 20px;
+}
+.verde{
+    color: rgb(19, 107, 19);
+    font-size: 20px;
+}

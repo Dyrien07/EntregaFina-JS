@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tienda Azul  Marino</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+  </head>
+  <body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar navbar-expand-lg bg-light toggeable d-none">
+                    <div class="container-fluid">
+                      <a class="navbar-brand" href="#"> <img src="./assets/logoazulmarino.jpg" class="rounded logo toggeable d-none "  alt="Logo Azul marino"><img></a>
+                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+                      <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                          <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>  
+                        </ul>
+                      </div>
+                    </div>
+                  </nav>
+                  <div class="text-center">
+                    <img src="./assets/logoazulmarino.jpg" class="rounded logo toggeable "  alt="Logo Azul marino">
+                  </div>
+                  
+                <form class="formLogin toggeable">
+                    <div class="mb-3 col-4">
+                      <label for="usuario" class="form-label">Usuario</label>
+                      <input type="text" class="form-control" id="usuario" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3 col-4 ">
+                      <label for="pw" class="form-label">Contraseña</label>
+                      <input type="password" class="form-control" id="pw">
+                    </div>
+                    <div class="mb-3 form-check">
+                      <input type="checkbox" class="form-check-input" id="chklogin">
+                      <label class="form-check-label" id="recordarme" for="chklogin">Recordarme</label>
+                    </div>
+                    <button type="submit" id="btnlogin" class="btn  btn-primary">Ingresar</button>
+                  </form>
+            </div>
+        </div>
+        <div class="center d-none toggeable"> 
+          <h2>Tienda de Natacion Azul Marino <span class="badge bg-secondary"></span></h2>
+        </div>
+        <div id="cards" class="cards"></div>
+        <div class="center margin-bot d-none toggeable">
+          <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+            <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+          </svg>
+        </div>
+        <div id="Carrito" class="center" >
+        </div>
+        <div class="row center">
+          <div class="col-6">
+              <div class="row toggeable d-none" >
+                  <div class="col-12">
+                      <div class="d-grid gap-2 col-6 mx-auto">
+                        <div class="d-grid gap-2 col-6 mx-auto btn-container">
+                          <button class="btn btn-primary btncarrito " id="btnFin" type="button">Finalizar Compra</button>
+                          <button class="btn btn-danger btncarrito" id="btnVaciar" type="button">Vaciar Carrito</button>
+                        </div>
+                        </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+     <script src="./js/index.js"></script>
+  </body>
+</html>
