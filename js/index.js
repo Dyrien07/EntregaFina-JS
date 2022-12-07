@@ -7,50 +7,21 @@ const usuarios = [
     usuario: "admin",
     pwd: "admin",
     nombre: "Nacho",
+    carrito:[]
   },
 ];
-const productos = [
-  {
-    id: 1,
-    nombre: "Antiparras",
-    precio: 3000,
-    img: "https://http2.mlstatic.com/D_NQ_NP_602923-MLA51992135455_102022-O.webp",
-    Stock: 5,
-    class: "0"
-    },
-  {
-    id: 2,
-    nombre: "Aniparras de Aguas Abiertas",
-    precio: 5000,
-    img: "https://http2.mlstatic.com/D_NQ_NP_857843-MLA31042138634_062019-O.webp",
-    Stock: 12,
-    class:"0"
-  },
-  {
-    id: 3,
-    nombre: "Clip de nariz",
-    precio: 1500,
-    img: "https://http2.mlstatic.com/D_NQ_NP_939273-MLA50455736186_062022-O.webp",
-    Stock: 1,
-    class:"0"
-  },
-  {
-    id: 4,
-    nombre: "Tapones de oido",
-    precio: 1500,
-    img: "https://http2.mlstatic.com/D_NQ_NP_869335-MLA48456336271_122021-O.webp",
-    Stock: 4,
-    class:  "0"
-  },
-  {
-    id: 5,
-    nombre: "Anti-Fog",
-    precio: 1500,
-    img: "https://d3ugyf2ht6aenh.cloudfront.net/stores/001/069/256/products/liquido-antifog-dak-21-6ef1051ac4b77a10c616616308205500-1024-1024.png",
-    Stock: 10,
-    class:  "0"
-  },
-];
+
+const  traerProductos = async()=>{
+  let info = ""
+  const productos = await fetch("./Productos.JSON")
+  .then(res => res.json())
+
+}
+
+
+traerProductos();
+
+
 
 const usuario = document.getElementById("usuario");
 const pwd = document.getElementById("pw");
@@ -140,7 +111,7 @@ function recuperarDatosUsuario(storage) {
   return JSON.parse(storage.getItem("usuario"));
 }
 
-function mostarCards(Productos) {
+ async function  mostarCards(losProductos)  {
 
   cards.innerHTML = "";
   Productos.forEach((element) => {
@@ -175,7 +146,7 @@ function mostarCards(Productos) {
   });
   btns[2].addEventListener("click", (event) => {
     event.preventDefault();
-    restarProducto(2, carrito)
+    restarProducto(2, carrito) 
     mostarCarrito(carrito);
    
 
@@ -201,10 +172,10 @@ function mostrarinfo(array, clase) {
   });
 }
 
-function Logeado(usuario) {
+async function  Logeado(usuario)   {
   if (usuario) {
     saludar(usuario);
-    mostarCards(productos);
+    await  mostarCards(data);
     mostrarinfo(elementosToggeables, "d-none");
   }
 }
@@ -238,15 +209,17 @@ btnlogin.addEventListener("click", (event) => {
   }
 });
 
-window.onload = () => {
-  Logeado(recuperarDatosUsuario(localStorage));
+window.onload = async() => {
+   await Logeado(recuperarDatosUsuario(localStorage));
 };
 
 btnVaciar.addEventListener("click", (event) => {
-event.preventDefault();
 console.log("Vacie Carrito"); 
 carrito =[];
-mostarCarrito(carrito);
+window.location.reload();
+
+
+
 });
 
 btnFin.addEventListener("click", async (event) => {
@@ -296,7 +269,7 @@ btnFin.addEventListener("click", async (event) => {
 });
 
 function restarProducto(unProducto, elCarrito){
-  let stockActual = productos[unProducto].Stock 
+  let stockActual = info[unProducto].Stock 
   if(stockActual == 0){
     Toastify({
       text: "Imposible, Realizar no tenemos mas stock disponible",
@@ -309,6 +282,7 @@ function restarProducto(unProducto, elCarrito){
     productos[unProducto].Stock += -1
     mostarCards(productos);
    carrito.push(productos[unProducto]);
+  
    
    mostarCarrito(carrito)
   }
