@@ -45,8 +45,7 @@ btnlogin.addEventListener("click", (event) => {
       });
     } else {
       if (recordarme.checked) {
-        console.log(recordarme)
-        console.log(data);
+
         guardarDatos(data,localStorage);
         saludar(recuperarDatosUsuario(localStorage));
       } else {
@@ -59,9 +58,9 @@ btnlogin.addEventListener("click", (event) => {
 });
 
 window.onload = () => {
-  console.log("entre a onwin")
+  
   Logeado(recuperarDatosUsuario(localStorage));
-  console.log(recuperarDatosUsuario(localStorage));
+ 
 };
 window.onload()
 btnVaciar.addEventListener("click", (event) => {

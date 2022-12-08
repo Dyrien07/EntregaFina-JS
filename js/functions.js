@@ -73,7 +73,7 @@ export function recuperarDatosUsuario(storage) {
 }
 async function agregarAlCarrito(unProducto) {
  carrito.push(losProductos[unProducto])
- console.log(carrito)
+ 
 }
 async function getProductos() {
   const respose = await fetch("./Productos.JSON");
@@ -150,12 +150,12 @@ export const vaciarCarrito = () => {
 };
 
 function eliminarProductoCarrito(unaPosicion) {
-  let posMas1 = parseInt(unaPosicion)+1;
-  console.log("la poss " + unaPosicion );
-  console.log("elimino hasta :  " +  posMas1);
+  
+  
+ 
   carrito.splice(unaPosicion , parseInt( unaPosicion)+1 );
 
-console.log(carrito.length);
+
 
   
    
