@@ -1,24 +1,31 @@
-import { mostrarinfo, vaciarCarrito, guardarDatos, saludar, mostrarProductos, Logeado, recuperarDatosUsuario, validarUsuario } from "./functions.js";
-
+import {elementosToggeables, mostrarinfo, vaciarCarrito, guardarDatos, saludar, mostrarProductos, Logeado, recuperarDatosUsuario, validarUsuario,carrito,borrarDatos } from "./functions.js";
 // Constantes
 const usuario = document.getElementById("usuario");
 const pwd = document.getElementById("pw");
 const recordarme = document.getElementById("chklogin");
 const btnlogin = document.getElementById("btnlogin");
-const elementosToggeables = document.querySelectorAll(".toggeable");
+
 const btnFin = document.getElementById("btnFin");
 const btnVaciar = document.getElementById("btnVaciar");
+const btndeslog = document.getElementById("btn-deslog");
+mostrarProductos();
+
+
 
 const usuarios = [
   {
     usuario: "admin",
     pwd: "admin",
     nombre: "Nacho",
-    carrito: [],
-  },
-];
-mostrarProductos();
 
+  }
+];
+
+btndeslog.addEventListener("click", (event)=> {
+borrarDatos();
+window.location.reload();
+
+})
 btnlogin.addEventListener("click", (event) => {
   event.preventDefault();
   if (!usuario.value || !pwd.value) {
@@ -29,6 +36,7 @@ btnlogin.addEventListener("click", (event) => {
     });
   } else {
     let data = validarUsuario(usuario.value, pwd.value, usuarios);
+
     if (!data) {
       Swal.fire({
         icon: "error",
@@ -37,22 +45,25 @@ btnlogin.addEventListener("click", (event) => {
       });
     } else {
       if (recordarme.checked) {
-        guardarDatos(data, localStorage);
+        console.log(recordarme)
+        console.log(data);
+        guardarDatos(data,localStorage);
         saludar(recuperarDatosUsuario(localStorage));
       } else {
         guardarDatos(data, sessionStorage);
         saludar(recuperarDatosUsuario(sessionStorage));
       }
-
       mostrarinfo(elementosToggeables, "d-none");
     }
   }
 });
 
-window.onload = async () => {
-  Logeado(elementosToggeables,recuperarDatosUsuario(localStorage));
+window.onload = () => {
+  console.log("entre a onwin")
+  Logeado(recuperarDatosUsuario(localStorage));
+  console.log(recuperarDatosUsuario(localStorage));
 };
-
+window.onload()
 btnVaciar.addEventListener("click", (event) => {
   event.preventDefault();
   vaciarCarrito();

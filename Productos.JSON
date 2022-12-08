@@ -3,41 +3,37 @@
         "id":1,
         "nombre":"Antiparras",
         "precio":3000,
-        "img":"https://http2.mlstatic.com/D_NQ_NP_602923-MLA51992135455_102022-O.webp",
-        "Stock":5,
-        "class":"0"
+        "img":"https://http2.mlstatic.com/D_NQ_NP_602923-MLA51992135455_102022-O.webp"
+       
+   
      },
      {
         "id":2,
         "nombre":"Aniparras de Aguas Abiertas",
         "precio":5000,
-        "img":"https://http2.mlstatic.com/D_NQ_NP_857843-MLA31042138634_062019-O.webp",
-        "Stock":12,
-        "class":"0"
+        "img":"https://http2.mlstatic.com/D_NQ_NP_857843-MLA31042138634_062019-O.webp"
+
      },
      {
         "id":3,
         "nombre":"Clip de nariz",
         "precio":1500,
-        "img":"https://http2.mlstatic.com/D_NQ_NP_939273-MLA50455736186_062022-O.webp",
-        "Stock":1,
-        "class":"0"
+        "img":"https://http2.mlstatic.com/D_NQ_NP_939273-MLA50455736186_062022-O.webp"
+  
      },
      {
         "id":4,
         "nombre":"Tapones de oido",
         "precio":1500,
-        "img":"https://http2.mlstatic.com/D_NQ_NP_869335-MLA48456336271_122021-O.webp",
-        "Stock":4,
-        "class":"0"
+        "img":"https://http2.mlstatic.com/D_NQ_NP_869335-MLA48456336271_122021-O.webp"
+      
      },
+
      {
         "id":5,
         "nombre":"Anti-Fog",
         "precio":1500,
-        "img":"https://d3ugyf2ht6aenh.cloudfront.net/stores/001/069/256/products/liquido-antifog-dak-21-6ef1051ac4b77a10c616616308205500-1024-1024.png",
-        "Stock":10,
-        "class":"0"
+        "img":"https://d3ugyf2ht6aenh.cloudfront.net/stores/001/069/256/products/liquido-antifog-dak-21-6ef1051ac4b77a10c616616308205500-1024-1024.png"
      }
    
   ]

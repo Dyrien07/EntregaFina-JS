@@ -1,15 +1,17 @@
 let losProductos = await getProductos();
-let carrito = [];
+export let carrito = [];
 const carritoCompras = document.getElementById("Carrito");
 const cards = document.getElementById("cards");
 const compras = document.getElementById("carrito");
+export const elementosToggeables = document.querySelectorAll(".toggeable");
+let i = 0;
 
 export function mostrarinfo(array, clase) {
   array.forEach((element) => {
     element.classList.toggle(clase);
   });
 }
-export function Logeado(elementosToggeables, usuario) {
+export function Logeado(usuario) {
   if (usuario) {
     saludar(usuario);
     mostrarinfo(elementosToggeables, "d-none");
@@ -18,13 +20,13 @@ export function Logeado(elementosToggeables, usuario) {
 async function mostarCards(productos) {
   cards.innerHTML = "";
   productos.forEach((element) => {
+    i++;
     let html = `<div class="card" style="width; id="card${element.nombre}">
       <img src="${element.img}" class="card-img-top" alt="${element.nombre}">
       <div class="card-body">
         <h5 class="card-title">${element.nombre}</h5>
         <p class="card-text">$${element.precio}</p>
-        <p class="card-text ${element.class}">Stock:${element.Stock}</p>
-        <button class="btn btn-primary addcar" id="btn${element.id}" value="${element.id}">Agregar al Carrito</button>
+        <button class="btn btn-primary addcar" id="${element.id}" value="${i}">Agregar al Carrito</button>
       </div>
     </div>`;
     cards.innerHTML += html;
@@ -33,10 +35,18 @@ async function mostarCards(productos) {
   btns.forEach((boton) => {
     boton.addEventListener("click", (e) => {
       e.preventDefault();
-      agregarAlCarrito(e.target.value, carrito);
-      mostrarCarrito(carrito);
+      agregarAlCarrito(e.target.id -1, carrito);
+      mostarCards(losProductos);
+        mostrarCarrito(carrito);
     });
+    
+   
+   
+    
   });
+
+
+  
 }
 export function saludar(usuario) {
   Toastify({
@@ -54,7 +64,7 @@ export function guardarDatos(datos, storage) {
   };
   storage.setItem("usuario", JSON.stringify(usuario));
 }
-function borrarDatos() {
+export function borrarDatos() {
   localStorage.clear();
   sessionStorage.clear();
 }
@@ -62,34 +72,8 @@ export function recuperarDatosUsuario(storage) {
   return JSON.parse(storage.getItem("usuario"));
 }
 async function agregarAlCarrito(unProducto) {
-  let stockActual = losProductos[unProducto - 1].Stock;
-  if (stockActual == 0) {
-    Toastify({
-      text: "Imposible, Realizar no tenemos mas stock disponible",
-      className: "info",
-      style: {
-        background: "red",
-      },
-    }).showToast();
-  } else {
-    const producto = losProductos[unProducto - 1];
-    let productoNuevoStock = {
-      id: producto.id,
-      nombre: producto.nombre,
-      precio: producto.precio,
-      img: producto.img,
-      Stock: producto.Stock - 1,
-      class: producto.class,
-    };
-    let nuevosProductos = losProductos.filter(
-      (product) => product.id !== producto.id
-    );
-    nuevosProductos.push(productoNuevoStock);
-    losProductos = nuevosProductos;
-    carrito.push(producto);
-    mostrarCarrito(carrito);
-    mostrarProductos();
-  }
+ carrito.push(losProductos[unProducto])
+ console.log(carrito)
 }
 async function getProductos() {
   const respose = await fetch("./Productos.JSON");
@@ -97,21 +81,33 @@ async function getProductos() {
   return result;
 }
 function mostrarCarrito() {
-  if (carrito) {
-    carritoCompras.innerHTML = "";
-    carrito.forEach((element) => {
-      let html = `<div class="card" style="width; id="card${losProductos[element.id-1].nombre}">
+  let i = -1;
+  carritoCompras.innerHTML = "";
+  carrito.forEach((element) => {
+    i++;
+    let html = `<div class="card" style="width; id="card${element.nombre}">
       <img src="${element.img}" class="card-img-top" alt="${element.nombre}">
       <div class="card-body">
-        <h5 class="card-title">${losProductos[element.id-1].nombre}</h5>
-        <p class="card-text">$${losProductos[element.id-1].precio}</p>
-        <button class="btn btn-primary addcar" id="btn${losProductos[element.id-1]}" value="${losProductos[element.id-1]}">Eliminar Del carrito</button>
+        <h5 class="card-title">${element.nombre}</h5>
+        <p class="card-text">$${element.precio}</p>
+        <button class="btn btn-primary removecar" id="btn${
+          element.id - 1
+        }" value="${i}">Eliminar Del carrito</button>
       </div>
     </div>`;
 
-      carritoCompras.innerHTML += html;
+    carritoCompras.innerHTML += html;
+  });
+
+  const btnseliminar = document.querySelectorAll(".removecar");
+
+  btnseliminar.forEach((botonEli) => {
+    botonEli.addEventListener("click", (e) => {
+      e.preventDefault();
+      eliminarProductoCarrito(e.target.value);
+      mostrarCarrito(carrito);
     });
-  }
+  });
 }
 export function validarUsuario(user, pwd, datos) {
   let encontrado = datos.find((datos) => datos.usuario === user);
@@ -149,21 +145,18 @@ export const mostrarProductos = async () => {
   mostarCards(losProductos);
 };
 export const vaciarCarrito = () => {
-  carrito.forEach((producto) => {
-    let auxProductos = losProductos.filter(
-      (product) => product.id !== producto.id
-    );
-    const auxObj = {
-      id: producto.id,
-      nombre: producto.nombre,
-      precio: producto.precio,
-      img: producto.img,
-      Stock: producto.Stock + losProductos[producto.id - 1].Stock,
-      class: producto.class,
-    };
-    auxProductos.push(auxObj);
-    losProductos = auxProductos;
-  });
   carrito = [];
   carritoCompras.innerHTML = "";
 };
+
+function eliminarProductoCarrito(unaPosicion) {
+  let posMas1 = parseInt(unaPosicion)+1;
+  console.log("la poss " + unaPosicion );
+  console.log("elimino hasta :  " +  posMas1);
+  carrito.splice(unaPosicion , parseInt( unaPosicion)+1 );
+
+console.log(carrito.length);
+
+  
+   
+}
